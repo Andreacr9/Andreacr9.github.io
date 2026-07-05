@@ -110,6 +110,10 @@
       linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
       repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
     overflow:hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.459), rgba(218, 218, 218, 0)), url(fotopodcast.jpeg);
+    background-size: cover; 
+    background-position: center 50%;
+
   }
   .hero-inner{ padding:24px; max-width:760px; }
   .hero-inner .eyebrow{
@@ -330,7 +334,7 @@
       <a href="opinion.html">Artículo de opinión</a>
       <div class="nav-logo">
         <a href="index.html" aria-label="Ir al inicio">
-          <span class="marca">Punto de Vista</span>
+          <span class="marca">Inicio</span>
           <span class="pluma"></span>
         </a>
       </div>
@@ -342,17 +346,15 @@
   <!-- ================= HERO ================= -->
   <header class="hero reveal">
     <div class="hero-inner">
-      <span class="eyebrow">Sección · Edición digital</span>
       <h1>Podcast</h1>
-      <p>Escucha nuestras conversaciones semanales directamente desde la página.</p>
     </div>
   </header>
 
   <main id="podcast">
-
+ <!-- ================= titulo ================= -->
     <div class="section-head reveal">
       <span class="eyebrow">Episodio de la semana</span>
-      <h2>Título del episodio</h2>
+      <h2>Hablemos sobre gentrificación</h2>
       <div class="filete"></div>
     </div>
 
@@ -367,7 +369,7 @@
           </button>
           <div class="player-info">
             <div class="episodio">Episodio 01</div>
-            <h3>Nombre del episodio del podcast</h3>
+            <h3>Hablemos sobre gentrificación</h3>
           </div>
         </div>
 
@@ -387,7 +389,7 @@
 
         <audio id="audio" preload="metadata">
           <!-- Reemplaza esta ruta por el archivo real del episodio -->
-          <source src="episodio-01.mp3" type="audio/mpeg">
+          <source src="podcastgentrificacion.mpeg" type="audio/mpeg">
         </audio>
 
       </div>
@@ -396,28 +398,21 @@
     <!-- ================= BLOQUE TEXTO IZQUIERDA + IMAGEN DERECHA ================= -->
     <article class="bloque-podcast reveal">
       <div class="cuerpo">
-        <div class="meta">Sobre el episodio <span class="autor">— Conducido por la redacción</span></div>
+        <div class="meta">Sobre el episodio <span class="autor"></span></div>
         <h3>De qué trata esta conversación</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis.</p>
+        <p>El podcast expone la profunda contradicción urbana que sufre el Centro Histórico de Lima, donde conviven locales comerciales exclusivos con calles sumidas en el abandono y la oscuridad.</p>
+        <p>Asimismo, se examina el impacto de la gentrificación, un fenómeno que desplaza a las familias tradicionales para transformar sus antiguas viviendas en depósitos de mercadería o en espacios destinados únicamente al consumo masivo. Finalmente, se plantea la urgencia de rescatar el valor humano de la ciudad, y que la verdadera revitalización sea integrar proyectos de vivienda social inclusivos, para devolverle la dignidad a los barrios y consolidar un centro verdaderamente vivo.</p>
       </div>
-      <div class="fig"><span>Imagen del episodio<br>(sugerido 900×1100px)</span></div>
+      <img src="galeriacentrro.jpeg" alt="">
     </article>
 
     <!-- ================= FRANJA ================= -->
-    <div class="franja">
-      <div class="wrap-int">
-        <span class="eyebrow">Archivo</span>
-        <h2>Más episodios en nuestro archivo</h2>
-        <p>Explora ediciones anteriores del podcast y no te pierdas ningún episodio.</p>
-      </div>
-    </div>
 
-  </main>
 
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-marca">Punto de Vista</span>
+      <span class="footer-marca">Déjame que te cuente limeño</span>
       <nav class="footer-links">
         <a href="columna.html">Columna</a>
         <a href="entrevista1.html">Entrevistas</a>
@@ -426,7 +421,7 @@
         <a href="#video">Análisis de video</a>
       </nav>
     </div>
-    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Podcast</div>
+    <div class="footer-bottom">Déjame que te cuente limeño — Trabajo académico · Sección Podcast</div>
   </footer>
 
 <script>
