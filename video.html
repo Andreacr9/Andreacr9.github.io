@@ -107,6 +107,8 @@
       linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
       repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
     overflow:hidden;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.459), rgba(218, 218, 218, 0)), url(balcones.jpeg);
+    background-size: cover; 
   }
   .hero-inner{ padding:24px; max-width:760px; }
   .hero-inner .eyebrow{
@@ -144,39 +146,29 @@
 
   /* ---------- REPRODUCTOR DE VIDEO ---------- */
   .video-wrap{
-    max-width:900px; margin:40px auto 0;
-    padding:0 32px;
+max-width: 900px;
+  margin: 40px auto 0;
+  padding: 32px;
+  
+
+  display: flex;
+  justify-content: center; 
+  align-items: center;
   }
+
   .video-marco{
-    background:var(--tinta);
-    padding:14px;
-    border-radius:2px;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
-  .video-marco video{
-    width:100%;
-    aspect-ratio:16/9;
-    background:#000;
-    display:block;
-  }
-  .video-info{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    padding:16px 6px 4px;
-    flex-wrap:wrap;
-  }
-  .video-info .episodio{
-    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--oro);
-  }
-  .video-info h3{
-    font-size:1.15rem; color:var(--crema);
-  }
-  .video-nota{
-    font-size:11px; letter-spacing:.04em;
-    color:rgba(250,250,250,0.5);
-  }
+
+.video-marco iframe {
+  display: block;
+  max-width: 100%; 
+}
+
 
   /* ---------- PÁRRAFO ANCHO ---------- */
   .parrafo-ancho{
@@ -258,9 +250,7 @@
   <!-- ================= HERO ================= -->
   <header class="hero reveal">
     <div class="hero-inner">
-      <span class="eyebrow">Sección · Edición digital</span>
-      <h1>Análisis de video</h1>
-      <p>Nuestros videos de análisis, disponibles directamente desde la página.</p>
+      <h1>Los balcones de lima</h1>
     </div>
   </header>
 
@@ -268,36 +258,29 @@
 
     <div class="section-head reveal">
       <span class="eyebrow">Video de la semana</span>
-      <h2>Título del análisis</h2>
-      <div class="filete"></div>
     </div>
 
     <!-- ================= REPRODUCTOR DE VIDEO ================= -->
     <div class="video-wrap reveal">
       <div class="video-marco">
-          <!-- Reemplaza esta ruta por el archivo de video que subas a la misma carpeta -->
           <iframe width="560" height="315" src="https://www.youtube.com/embed/XcOhwL96QEE?si=rGthzLNLFJyMoXjK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          Tu navegador no soporta la reproducción de este video.
         <div class="video-info">
-          <div>
-            <div class="episodio">Análisis 01</div>
-            <h3>Los balcones de lima</h3>
-          </div>
         </div>
       </div>
     </div>
 
     <!-- ================= PÁRRAFO ANCHO ================= -->
     <section class="parrafo-ancho reveal">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis. In ut ultricies ligula. Pellentesque velit risus, laoreet in eros quis, volutpat accumsan mauris. Pellentesque varius elit at sapien lacinia, id dignissim metus finibus. Etiam nulla purus, iaculis eget enim sit amet, sagittis gravida lacus.</p>
+      <p>
+      Este video grabado en el Centro Histórico de Lima,es un análisis de un episodio de Sucedió en el Perú sobre los icónicos balcones de la capital. A través de un recorrido en vivo por puntos como el Palacio de Torre Tagle y  la Casa de Osambela,se explica cómo estas estructuras de origen mudéjar se adaptaron al clima limeño y a su actividad sísmica. Asimismo, se aborda la dimensión social del balcón como un "periscopio" y el territorio de las tapadas limeñas, quienes usaban las celosías bajo la dinámica de "ver sin ser visto" para participar de la vida pública.
+      </p>
+      <p>El punto de quiebre de este  análisis se sitúa a mediados del siglo XX debido a las corrientes del higienismo y la fiebre del progreso automotriz. En este escenario de demoliciones masivas, se destacó la resistencia cultural del profesor Bruno Roselli, "El loco de los balcones", quien gastó su propio sueldo para salvar estas piezas de la hoguera e inspiró la conservación actual.</p>
     </section>
 
     <!-- ================= FRANJA ================= -->
     <div class="franja">
       <div class="wrap-int">
-        <span class="eyebrow">Archivo</span>
-        <h2>Más videos en nuestro archivo</h2>
-        <p>Explora ediciones anteriores de nuestros análisis en video.</p>
+        <h2>Más videos próximamente</h2>
       </div>
     </div>
 
@@ -306,7 +289,7 @@
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-marca">Punto de Vista</span>
+      <span class="footer-marca">Déjame que te cuente limeño</span>
       <nav class="footer-links">
         <a href="columna.html">Columna</a>
         <a href="entrevista1.html">Entrevistas</a>
@@ -315,7 +298,7 @@
         <a href="video.html">Análisis de video</a>
       </nav>
     </div>
-    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Análisis de video</div>
+    <div class="footer-bottom">Déjame que te cuente limeño — Trabajo académico · Sección Análisis de video</div>
   </footer>
 
 <script>
