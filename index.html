@@ -119,19 +119,26 @@
 
   }
 
-  .hero-inner{ padding:24px; max-width:760px; }
+  .hero-inner{
+width: 100%;
+  display: flex;
+  justify-content: center;
+   }
   .hero-inner .eyebrow{
     font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
     color:var(--oro); margin-bottom:18px; display:block;
   }
   .hero-inner h1{
-    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-size:clamp(2.6rem, 10vw, 4.6rem);
     line-height:1.04;
     margin-bottom:18px;
     color: #ffdb5a; 
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+    white-space: nowrap;
+    text-align: center;
   }
   .hero-inner p{
+    font-size:clamp(2.5rem, 6vw, 3.7rem);
     font-size:1.05rem;
     color:    rgba(28,28,28,0.72);
     max-width:520px;
@@ -204,7 +211,7 @@
   }
   .destacado .meta .autor{ color:rgba(28,28,28,0.55); margin-left:10px;}
   .destacado h3{ font-size:1.9rem; line-height:1.15; margin-bottom:14px; }
-  .destacado p.extracto{ color:rgba(28,28,28,0.78); margin-bottom:20px; max-width:52ch; }
+  .destacado p.extracto{ color:rgba(28,28,28,0.78); margin-bottom:20px; max-width:52ch; font-size: 1.15rem; }
   .leer-mas{
     font-size:12px; letter-spacing:.1em; text-transform:uppercase;
     color:var(--rojo); border-bottom:1px solid var(--rojo); padding-bottom:3px;
@@ -230,13 +237,15 @@
     display:flex;
     align-items:flex-end;
   }
-  .card .capa{
-    position:absolute; inset:0;
-    background:
-      repeating-linear-gradient(135deg, #4a4a5e 0 2px, #5a5a72 2px 30px);
-    opacity:.55;
-    transition:transform .5s ease;
-  }
+.card .capa {
+  position: absolute; 
+  inset: 0;
+  background-size: cover;       /* Ajusta la foto para llenar toda la card */
+  background-position: center;  /* Centra la imagen vertical y horizontalmente */
+  background-repeat: no-repeat; /* Evita que la imagen se duplique */
+  opacity: .65;                 /* Controla qué tan brillante se ve la foto (bájalo si el texto cuesta leerse) */
+  transition: transform .5s ease;
+}
   .card:hover .capa{ transform:scale(1.06); }
   .card .sombra{
     position:absolute; inset:0;
@@ -327,7 +336,7 @@
       <a href="opinion.html">Artículo de opinión</a>
       <div class="nav-logo">
         <a href="index.html" class="active" aria-current="page" aria-label="Ir al inicio">
-          <span class="marca">Punto de Vista</span>
+          <span class="marca">Inicio</span>
           <span class="pluma"></span>
         </a>
       </div>
@@ -339,9 +348,7 @@
   <!-- ================= CABECERA / HERO CON IMAGEN ================= -->
   <header class="hero">
     <div class="hero-inner">
-      <span class="eyebrow">Edición digital · Actualizado a diario</span>
-      <h1>Voces y análisis del día a día</h1>
-      <p>Columnas de opinión, entrevistas y contenido audiovisual desde una sola mirada.</p>
+      <h1>Déjame que te cuente limeño...</h1>
     </div>
   </header>
 
@@ -350,94 +357,78 @@
     <!-- ================= ENCABEZADO DE SECCIÓN ================= -->
     <div class="section-head reveal">
       <span class="eyebrow">Destacado</span>
-      <h2>Columna</h2>
+      <h2>¿Qué es la gentrificación?</h2>
       <div class="filete"></div>
       <p>Textos de opinión firmados, publicados semanalmente. Cada entrada combina una imagen de apoyo con el desarrollo del texto.</p>
     </div>
 
     <!-- ================= ENTRADA DESTACADA (imagen + texto) ================= -->
     <article class="destacado">
-      <div class="fig"><span>Imagen destacada de la columna<br>(sugerido 1200×900px)</span></div>
+      <div class="fig"><span><br></span></div>
       <div class="cuerpo">
-        <div class="meta">Columna de la semana <span class="autor">— Nombre del autor</span></div>
-        <h3>Título de la columna principal</h3>
-        <p class="extracto">Aquí va el primer párrafo o resumen de la columna. Este espacio está pensado para el texto de introducción que engancha al lector antes de continuar con el desarrollo completo del artículo.</p>
-        <a href="columna.html" class="leer-mas">Leer columna completa →</a>
+        <p class="extracto">La gentrificación es un proceso de transformación urbana en el que un barrio de bajos ingresos o en estado de abandono experimenta una renovación arquitectónica, comercial e inmobiliaria. Al mejorar el entorno, la zona atrae a comercios de mayor estatus y a residentes con un poder adquisitivo más alto, lo que dispara drásticamente el valor del suelo, los alquileres y los servicios básicos. La consecuencia más dura de este fenómeno es el desplazamiento forzoso de los habitantes originales y de los pequeños negocios tradicionales, quienes se ven obligados a mudarse al no poder costear el nuevo nivel de vida.</p>
       </div>
     </article>
 
     <article class="paragrafo-destacado">
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis. In ut ultricies ligula. Pellentesque velit risus, laoreet in eros quis, volutpat accumsan mauris. Pellentesque varius elit at sapien lacinia, id dignissim metus finibus. Etiam nulla purus, iaculis eget enim sit amet, sagittis gravida lacus.
-
-Nulla vel venenatis diam, a porta erat. Sed a facilisis ex. Nam iaculis dolor quis ipsum tristique pretium. Curabitur erat neque, cursus varius ullamcorper vitae, fermentum sed dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean massa velit, convallis sed finibus nec, commodo at sem. Nunc mattis sodales lacinia. Sed vestibulum est eu nisl tristique, quis vehicula magna iaculis. Ut venenatis ex elit, nec mattis nisi tempus ut. Integer feugiat id dolor nec cursus. Donec vel velit velit.</p>
+      <p>Proteger al Centro Histórico de Lima de una gentrificación desmedida es urgente porque este espacio, declarado Patrimonio de la Humanidad por la UNESCO, es un tejido vivo que va mucho más allá de sus iglesias y balcones coloniales. Su verdadero valor reside en su patrimonio inmaterial y en la memoria colectiva de los vecinos que habitan sus quintas, solares y callejones. Si el proceso de renovación urbana se enfoca únicamente en el mercado inmobiliario de lujo o en franquicias comerciales, el centro corre el riesgo de sufrir una "turistificación", transformándose en una maqueta fría y en un parque temático turístico vacío de su identidad y de su alma original.</p>
+      <p>Además, existe un factor de profunda injusticia social en el desplazamiento de las comunidades vulnerables que han resistido en el centro por generaciones, muchas veces en condiciones habitacionales precarias. El verdadero desafío para Lima no es congelar el centro en el tiempo ni oponerse a su modernización, sino impulsar una revitalización inclusiva que recupere la belleza arquitectónica y mejore los servicios básicos, pero garantizando siempre el derecho a la vivienda y la permanencia de su gente.</p>
     </article>
 
     <!-- ================= GRILLA DE SECCIONES DEL SITIO ================= -->
     <div class="grid-columnas">
 
-      <div class="card">
-        <div class="capa"></div>
-        <div class="sombra"></div>
-        <span class="placeholder-txt">Espacio para imagen</span>
-        <div class="contenido">
-          <span class="num">01</span>
-          <h3>Podcast</h3>
-          <a href="podcast.html" class="conoce">Leer más</a>
-        </div>
-      </div>
+<div class="card">
+  <div class="capa" style="background-image: url('sanpedro.jpeg');"></div>
+  <div class="sombra"></div>
+  <span class="placeholder-txt"></span>
+  <div class="contenido">
+    <h3>Podcast</h3>
+    <a href="podcast.html" class="conoce">Leer más</a>
+  </div>
+</div>
 
-      <div class="card reveal">
-        <div class="capa"></div>
-        <div class="sombra"></div>
-        <span class="placeholder-txt">Espacio para imagen</span>
-        <div class="contenido">
-          <span class="num">02</span>
-          <h3>Artículo de opinión</h3>
-          <a href="opinion.html" class="conoce">Leer más</a>
-        </div>
-      </div>
+<div class="card reveal">
+  <div class="capa" style="background-image: url('santarosa.jpeg');"></div>
+  <div class="sombra"></div>
+  <div class="contenido">
+    <h3>Artículo de opinión</h3>
+    <a href="opinion.html" class="conoce">Leer más</a>
+  </div>
+</div>
 
-      <div class="card reveal delay-1">
-        <div class="capa"></div>
-        <div class="sombra"></div>
-        <span class="placeholder-txt">Espacio para imagen</span>
-        <div class="contenido">
-          <span class="num">03</span>
-          <h3>Video</h3>
-          <a href="video.html" class="conoce">Leer más</a>
-        </div>
-      </div>
+<div class="card reveal delay-1">
+  <div class="capa" style="background-image: url('lamerced.jpeg');"></div>
+  <div class="sombra"></div>
+  <div class="contenido">
+    <h3>Video</h3>
+    <a href="video.html" class="conoce">Leer más</a>
+  </div>
+</div>
 
-      <div class="card reveal delay-2">
-        <div class="capa"></div>
-        <div class="sombra"></div>
-        <span class="placeholder-txt">Espacio para imagen</span>
-        <div class="contenido">
-          <span class="num">04</span>
-          <h3>Columna de opinión</h3>
-          <a href="columna.html" class="conoce">Leer más</a>
-        </div>
-      </div>
+<div class="card reveal delay-2">
+  <div class="capa" style="background-image: url('santodomingo.jpeg');"></div>
+  <div class="sombra"></div>
+  <div class="contenido">
+    <h3>Columna de opinión</h3>
+    <a href="columna.html" class="conoce">Leer más</a>
+  </div>
+</div>
 
-      <div class="card reveal delay-3">
-        <div class="capa"></div>
-        <div class="sombra"></div>
-        <span class="placeholder-txt">Espacio para imagen</span>
-        <div class="contenido">
-          <span class="num">04</span>
-          <h3>Entrevistas</h3>
-          <a href="entrevista1.html" class="conoce">Leer más</a>
-        </div>
-      </div>
-
+<div class="card reveal delay-3">
+  <div class="capa" style="background-image: url('santodomingo.jpeg');"></div>
+  <div class="sombra"></div>
+  <div class="contenido">
+    <h3>Entrevistas</h3>
+    <a href="entrevista1.html" class="conoce">Leer más</a>
+  </div>
+</div>
     </div>
 
     <!-- ================= FRANJA DECORATIVA ================= -->
     <div class="franja">
       <div class="wrap-int">
-        <span class="eyebrow">Archivo</span>
-        <h2>Más columnas en nuestro archivo</h2>
-        <p>Explora ediciones anteriores y descubre todas las columnas publicadas hasta la fecha.</p>
+        <h2>Descubre más en nuestra página web</h2>
       </div>
     </div>
 
@@ -446,7 +437,7 @@ Nulla vel venenatis diam, a porta erat. Sed a facilisis ex. Nam iaculis dolor qu
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-marca">Punto de Vista</span>
+      <span class="footer-marca">Déjame que te cuente limeño</span>
       <nav class="footer-links">
         <a href="columna.html">Columna</a>
         <a href="entrevista1.html">Entrevistas</a>
@@ -455,7 +446,7 @@ Nulla vel venenatis diam, a porta erat. Sed a facilisis ex. Nam iaculis dolor qu
         <a href="video.html">Análisis de video</a>
       </nav>
     </div>
-    <div class="footer-bottom">Punto de Vista — Trabajo académico · Inicio</div>
+    <div class="footer-bottom">Déjame que te cuente limeño — Trabajo académico · Inicio</div>
   </footer>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
