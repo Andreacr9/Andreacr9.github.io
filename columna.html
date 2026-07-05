@@ -107,6 +107,9 @@
       linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
       repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
     overflow:hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.459), rgba(218, 218, 218, 0)), url(detrasdelafachada.jpeg);
+    background-size: cover; 
+    background-position: center 50%;
   }
   .hero-inner{ padding:24px; max-width:760px; }
   .hero-inner .eyebrow{
@@ -127,7 +130,7 @@
     text-align:center;
   }
   .section-head .eyebrow{
-    font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+    font-size:1.3rem; letter-spacing:.24em; text-transform:uppercase;
     color:var(--rojo); display:block; margin-bottom:12px;
   }
   .section-head h2{ font-size:clamp(1.9rem,3.8vw,2.6rem); max-width:760px; margin:0 auto; }
@@ -145,28 +148,21 @@
     display:grid;
     grid-template-columns:1fr;
     gap:40px;
-    position:relative;
+    position:start;
   }
-  @media (min-width:820px){
-    .columnas-grid{
-      grid-template-columns:1fr 1fr;
-      gap:60px;
-    }
-    /* Línea divisoria vertical entre las dos columnas */
-    .columnas-grid::before{
-      content:"";
-      position:absolute;
-      top:0; bottom:0; left:50%;
-      width:1px;
-      background:var(--linea);
-      transform:translateX(-50%);
-    }
+@media (min-width:820px) {
+  .columnas-grid {
+    max-width: 700px; 
+    margin: 0 auto; 
   }
+}
+  
   .columnas-grid p{
-    font-size:1.05rem;
+    font-size:1.15rem;
     line-height:1.85;
     color:rgba(28,28,28,0.82);
     margin-bottom:1.2em;
+    text-align: justify; 
   }
   .columnas-grid p:last-child{ margin-bottom:0; }
 
@@ -230,7 +226,7 @@
       <a href="opinion.html">Artículo de opinión</a>
       <div class="nav-logo">
         <a href="index.html" aria-label="Ir al inicio">
-          <span class="marca">Punto de Vista</span>
+          <span class="marca">Inicio</span>
           <span class="pluma"></span>
         </a>
       </div>
@@ -242,16 +238,15 @@
   <!-- ================= HERO ================= -->
   <header class="hero reveal">
     <div class="hero-inner">
-      <span class="eyebrow">Sección · Edición digital</span>
-      <h1>Columna</h1>
+      <h1>Más allá de la fachada</h1>
     </div>
   </header>
 
   <main id="columna">
 
     <div class="section-head reveal">
-      <span class="eyebrow">Columna de la semana — Nombre del autor</span>
-      <h2>Título de la columna principal</h2>
+      <span class="eyebrow">El verdadero valor de mantener vivo nuestro Centro Histórico</span>
+      <span class="eyebrow">Por: Andrea Cauracuri Rengifo</span>
       <div class="filete"></div>
     </div>
 
@@ -260,13 +255,10 @@
       <div class="columnas-grid">
 
         <div class="columna-izquierda">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam.</p>
-          <p>Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis. In ut ultricies ligula. Pellentesque velit risus, laoreet in eros quis, volutpat accumsan mauris. Pellentesque varius elit at sapien lacinia, id dignissim metus finibus. Etiam nulla purus, iaculis eget enim sit amet, sagittis gravida lacus.</p>
-        </div>
-
-        <div class="columna-derecha">
-          <p>Nulla vel venenatis diam, a porta erat. Sed a facilisis ex. Nam iaculis dolor quis ipsum tristique pretium. Curabitur erat neque, cursus varius ullamcorper vitae, fermentum sed dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
-          <p>Aenean massa velit, convallis sed finibus nec, commodo at sem. Nunc mattis sodales lacinia. Sed vestibulum est eu nisl tristique, quis vehicula magna iaculis. Ut venenatis ex elit, nec mattis nisi tempus ut. Integer feugiat id dolor nec cursus. Donec vel velit velit.</p>
+          <p>El Centro Histórico de Lima atraviesa una metamorfosis innegable. Caminar hoy por sus calles es encontrarse con fachadas republicanas recién restauradas, balcones coloniales que han recuperado su esplendor barroco y nuevos cafés de especialidad que atraen a un público joven y cosmopolita. A primera vista, el balance parece puramente positivo: la recuperación del patrimonio arquitectónico y la inyección de capital privado revitalizan una zona que durante décadas arrastró el estigma del abandono y la inseguridad. Sin embargo, detrás de la pintura fresca y la iluminación ornamental se esconde un fenómeno mucho más complejo y humano que no podemos ignorar: la gentrificación.</p>
+          <p>El problema central no radica en la restauración edilicia en sí misma, sino en a costa de quiénes se está logrando. Debajo de esos techos altos y detrás de los muros de adobe que hoy se cotizan al alza, han habitado por generaciones familias limeñas que le dieron alma, ritmo y sazón al Damero de Pizarro. Hoy, la silenciosa presión del mercado inmobiliario, el aumento desmedido de los alquileres y la proliferación de alojamientos turísticos de corta estancia están empujando a los residentes históricos hacia las periferias. La gentrificación opera como un filtro invisible pero implacable: desplaza a los vecinos de siempre para dar la bienvenida a consumidores temporales, transformando un espacio vivo en una suerte de escenografía para el turismo masivo.</p>
+          <p>Cuando un barrio pierde a sus habitantes, pierde también su memoria identidad. El verdadero valor del Centro Histórico de Lima no reside únicamente en la simetría de sus iglesias o en el valor monumental de sus casonas, sino en el tejido social que las habita: el librero de Jirón Amazonas, la quinta donde se gestó la jarana criolla, el menú democrático que alimenta al oficinista y al ambulante por igual. Si el proceso de modernización continúa enfocándose solo en lo estético y lo comercial, corremos el riesgo de convertir nuestro centro en un parque temático estéril, un lugar hermoso para fotografiar pero vacío de comunidad.</p>
+          <p>El desafío para las autoridades metropolitanas y los planificadores urbanos no es frenar la inversión, sino regularla con un enfoque social. Una revitalización urbana justa requiere políticas públicas que protejan el derecho a la vivienda, promuevan alquileres asequibles y reconozcan al vecino histórico como el principal custodio del patrimonio. Lima no necesita un centro que solo brille para el visitante de paso mientras le da la espalda a su propia gente. Es urgente mirar más allá de la fachada y entender que el desarrollo urbano solo es real si incluye a las personas que, con su vida cotidiana, mantienen vivo el corazón de la ciudad.</p>
         </div>
 
       </div>
@@ -277,7 +269,7 @@
   <!-- ================= FOOTER ================= -->
   <footer>
     <div class="footer-inner">
-      <span class="footer-marca">Punto de Vista</span>
+      <span class="footer-marca">Déjame que te cuente limeño</span>
       <nav class="footer-links">
         <a href="columna.html">Columna</a>
         <a href="entrevista1.html">Entrevistas</a>
@@ -286,7 +278,7 @@
         <a href="video.html">Análisis de video</a>
       </nav>
     </div>
-    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Columna</div>
+    <div class="footer-bottom">Déjame que te cuente limeño — Trabajo académico · Sección Columna</div>
   </footer>
 
 <script>
