@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punto de Vista — Inicio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#fafafa;
+    --crema-osc:#ececec;
+    --tinta:#1c1c1c;
+    --rojo:#6060e6;
+    --oro:#6060e6;
+    --linea: rgba(28,28,28,0.14);
+    --max: 1180px;
+  }
+
+  /* ---------- ANIMACIONES CON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .delay-1 { transition-delay: 0.15s; }
+  .delay-2 { transition-delay: 0.3s; }
+  .delay-3 { transition-delay: 0.45s; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:700; margin:0;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAVBAR ESTILO CENTRADO CON LOGO ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--crema);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 46px);
+    flex-wrap:wrap;
+  }
+  .nav-inner a{
+    font-family:'Jost', sans-serif;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--tinta);
+    padding:10px 2px;
+    position:relative;
+    white-space:nowrap;
+  }
+  .nav-inner a:hover{color:var(--rojo);}
+  .nav-inner a:focus-visible{outline:2px solid var(--oro); outline-offset:3px;}
+  .nav-inner a.active{color:var(--rojo); font-weight:500;}
+  .nav-inner a.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:2px;
+    height:2px; background:var(--oro);
+  }
+  .nav-logo{
+    display:flex; flex-direction:column; align-items:center;
+    line-height:1; margin:0 6px;
+  }
+  .nav-logo .marca{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.03em;
+    color:var(--tinta);
+  }
+  .nav-logo .pluma{
+    width:20px; height:2px; background:var(--oro); margin-top:6px;
+  }
+  .nav-logo a.active .marca{ color:var(--rojo); }
+  .nav-logo a.active .pluma{ background:var(--rojo); }
+  .nav-logo a:focus-visible{ outline:2px solid var(--oro); outline-offset:3px; }
+
+  /* ---------- HERO / CABECERA CON IMAGEN A PANTALLA COMPLETA ---------- */
+  .hero{
+    position:relative;
+    min-height:64vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--crema);
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.30) 0%, rgba(28,28,28,0.72) 100%),
+      repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.459), rgba(218, 218, 218, 0)), url("casa\ antes\ y\ despues.jpeg");
+
+  }
+
+  .hero-inner{ padding:24px; max-width:760px; }
+  .hero-inner .eyebrow{
+    font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:18px; display:block;
+  }
+  .hero-inner h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.04;
+    margin-bottom:18px;
+    color: #ffdb5a; 
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+  }
+  .hero-inner p{
+    font-size:1.05rem;
+    color:    rgba(28,28,28,0.72);
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  /* ---------- ENCABEZADO DE SECCIÓN ---------- */
+  .section-head{
+    max-width:var(--max); margin:0 auto;
+    padding:70px 32px 24px;
+    text-align:center;
+  }
+  .section-head .eyebrow{
+    font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--rojo); display:block; margin-bottom:12px;
+  }
+  .section-head h2{ font-size:clamp(2rem,4vw,2.6rem); }
+  .section-head .filete{
+    width:56px; height:2px; background:var(--oro);
+    margin:20px auto 0;
+  }
+  .section-head p{
+    max-width:600px; margin:20px auto 0;
+    color:rgba(250,250,250,0.9);
+  }
+
+  /* ---------- PARAGRAFO DESTACADO ---------- */
+  .paragrafo-destacado {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 20px 32px 60px;
+  }
+  
+  .paragrafo-destacado p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(28, 28, 28, 0.85);
+    white-space: pre-line;
+  }
+  .destacado{
+    max-width:var(--max); margin:0 auto;
+    padding:20px 32px 60px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:34px;
+    align-items:center;
+  }
+  @media (min-width:820px){
+    .destacado{ grid-template-columns:1fr 1fr; }
+  }
+  .destacado .fig{
+    position:relative;
+    aspect-ratio:4/3;
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.02), rgba(28,28,28,0.10)),
+      repeating-linear-gradient(45deg, #d8d8d8 0 2px, #e2e2e2 2px 28px);
+    border:1px solid var(--linea);
+    background-image: url("casona\ aliaga.png");
+  }
+  .destacado .fig span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:rgba(28,28,28,0.45);
+  }
+  .destacado .meta{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:12px;
+  }
+  .destacado .meta .autor{ color:rgba(28,28,28,0.55); margin-left:10px;}
+  .destacado h3{ font-size:1.9rem; line-height:1.15; margin-bottom:14px; }
+  .destacado p.extracto{ color:rgba(28,28,28,0.78); margin-bottom:20px; max-width:52ch; }
+  .leer-mas{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--rojo); border-bottom:1px solid var(--rojo); padding-bottom:3px;
+  }
+  .leer-mas:hover{ color:var(--oro); border-color:var(--oro); }
+
+  /* ---------- GRILLA DE TARJETAS ---------- */
+  .grid-columnas{
+    max-width:var(--max); margin:0 auto;
+    padding:10px 32px 90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:2px;
+    background:var(--linea);
+    border:1px solid var(--linea);
+    background-image: linear-gradient(rgba(218, 218, 218, 0.7), rgba(0, 0, 0, 0.5)), url("azulejos.jpg");
+  }
+  .card{
+    position:relative;
+    aspect-ratio:3/4;
+    background:var(--crema-osc);
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+  }
+  .card .capa{
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(135deg, #4a4a5e 0 2px, #5a5a72 2px 30px);
+    opacity:.55;
+    transition:transform .5s ease;
+  }
+  .card:hover .capa{ transform:scale(1.06); }
+  .card .sombra{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(28,28,28,0) 40%, rgba(28,28,28,0.82) 100%);
+  }
+  .card .placeholder-txt{
+    position:absolute; top:14px; left:14px; right:14px;
+    font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:rgba(250,250,250,0.7);
+  }
+  .card .contenido{
+    position:relative; z-index:2;
+    padding:22px 20px;
+    color:var(--crema);
+    width:100%;
+  }
+  .card .num{
+    font-family:'Playfair Display', serif;
+    font-size:12px; color:var(--oro); letter-spacing:.1em;
+    display:block; margin-bottom:8px;
+  }
+  .card h3{
+    font-size:1.25rem; margin-bottom:10px; line-height:1.15;
+  }
+  .card .conoce{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--crema); opacity:.85; border-bottom:1px solid rgba(250,250,250,0.5);
+    padding-bottom:2px; display:inline-block;
+  }
+  .card:hover .conoce{ border-color:var(--oro); color:var(--oro); }
+
+  /* ---------- FRANJA DECORATIVA ---------- */
+  .franja{
+    background:var(--tinta);
+    color:var(--crema);
+    padding:64px 32px;
+    text-align:center;
+  }
+  .franja .wrap-int{ max-width:640px; margin:0 auto; }
+  .franja .eyebrow{
+    font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--oro); display:block; margin-bottom:16px;
+  }
+  .franja h2{ color:var(--crema); font-size:clamp(1.7rem,3.4vw,2.3rem); margin-bottom:16px; }
+  .franja p{ color:rgba(250,250,250,0.78); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--crema-osc);
+    border-top:1px solid var(--linea);
+    padding:40px 32px 26px;
+  }
+  .footer-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:24px;
+    justify-content:space-between; align-items:flex-start;
+  }
+  .footer-marca{
+    font-family:'Playfair Display', serif; font-weight:700; font-size:20px;
+  }
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap:16px 22px;
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .footer-links a:hover{ color:var(--rojo); }
+  .footer-bottom{
+    max-width:var(--max); margin:26px auto 0;
+    padding-top:18px; border-top:1px solid var(--linea);
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:rgba(28,28,28,0.55);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .card .capa{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR CENTRADO CON LOGO ================= -->
+  <!-- El logo "Punto de Vista" apunta a esta misma página (index.html), que ahora es el inicio del sitio. -->
+  <nav class="navbar reveal">
+    <div class="nav-inner">
+      <a href="columna.html">Columna</a>
+      <a href="entrevista1.html">Entrevistas</a>
+      <a href="opinion.html">Artículo de opinión</a>
+      <div class="nav-logo">
+        <a href="index.html" class="active" aria-current="page" aria-label="Ir al inicio">
+          <span class="marca">Punto de Vista</span>
+          <span class="pluma"></span>
+        </a>
+      </div>
+      <a href="podcast.html">Podcast</a>
+      <a href="video.html">Análisis de video</a>
+    </div>
+  </nav>
+
+  <!-- ================= CABECERA / HERO CON IMAGEN ================= -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Edición digital · Actualizado a diario</span>
+      <h1>Voces y análisis del día a día</h1>
+      <p>Columnas de opinión, entrevistas y contenido audiovisual desde una sola mirada.</p>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ================= ENCABEZADO DE SECCIÓN ================= -->
+    <div class="section-head reveal">
+      <span class="eyebrow">Destacado</span>
+      <h2>Columna</h2>
+      <div class="filete"></div>
+      <p>Textos de opinión firmados, publicados semanalmente. Cada entrada combina una imagen de apoyo con el desarrollo del texto.</p>
+    </div>
+
+    <!-- ================= ENTRADA DESTACADA (imagen + texto) ================= -->
+    <article class="destacado">
+      <div class="fig"><span>Imagen destacada de la columna<br>(sugerido 1200×900px)</span></div>
+      <div class="cuerpo">
+        <div class="meta">Columna de la semana <span class="autor">— Nombre del autor</span></div>
+        <h3>Título de la columna principal</h3>
+        <p class="extracto">Aquí va el primer párrafo o resumen de la columna. Este espacio está pensado para el texto de introducción que engancha al lector antes de continuar con el desarrollo completo del artículo.</p>
+        <a href="columna.html" class="leer-mas">Leer columna completa →</a>
+      </div>
+    </article>
+
+    <article class="paragrafo-destacado">
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis. In ut ultricies ligula. Pellentesque velit risus, laoreet in eros quis, volutpat accumsan mauris. Pellentesque varius elit at sapien lacinia, id dignissim metus finibus. Etiam nulla purus, iaculis eget enim sit amet, sagittis gravida lacus.
+
+Nulla vel venenatis diam, a porta erat. Sed a facilisis ex. Nam iaculis dolor quis ipsum tristique pretium. Curabitur erat neque, cursus varius ullamcorper vitae, fermentum sed dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean massa velit, convallis sed finibus nec, commodo at sem. Nunc mattis sodales lacinia. Sed vestibulum est eu nisl tristique, quis vehicula magna iaculis. Ut venenatis ex elit, nec mattis nisi tempus ut. Integer feugiat id dolor nec cursus. Donec vel velit velit.</p>
+    </article>
+
+    <!-- ================= GRILLA DE SECCIONES DEL SITIO ================= -->
+    <div class="grid-columnas">
+
+      <div class="card">
+        <div class="capa"></div>
+        <div class="sombra"></div>
+        <span class="placeholder-txt">Espacio para imagen</span>
+        <div class="contenido">
+          <span class="num">01</span>
+          <h3>Podcast</h3>
+          <a href="podcast.html" class="conoce">Leer más</a>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="capa"></div>
+        <div class="sombra"></div>
+        <span class="placeholder-txt">Espacio para imagen</span>
+        <div class="contenido">
+          <span class="num">02</span>
+          <h3>Artículo de opinión</h3>
+          <a href="opinion.html" class="conoce">Leer más</a>
+        </div>
+      </div>
+
+      <div class="card reveal delay-1">
+        <div class="capa"></div>
+        <div class="sombra"></div>
+        <span class="placeholder-txt">Espacio para imagen</span>
+        <div class="contenido">
+          <span class="num">03</span>
+          <h3>Video</h3>
+          <a href="video.html" class="conoce">Leer más</a>
+        </div>
+      </div>
+
+      <div class="card reveal delay-2">
+        <div class="capa"></div>
+        <div class="sombra"></div>
+        <span class="placeholder-txt">Espacio para imagen</span>
+        <div class="contenido">
+          <span class="num">04</span>
+          <h3>Columna de opinión</h3>
+          <a href="columna.html" class="conoce">Leer más</a>
+        </div>
+      </div>
+
+      <div class="card reveal delay-3">
+        <div class="capa"></div>
+        <div class="sombra"></div>
+        <span class="placeholder-txt">Espacio para imagen</span>
+        <div class="contenido">
+          <span class="num">04</span>
+          <h3>Entrevistas</h3>
+          <a href="entrevista1.html" class="conoce">Leer más</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= FRANJA DECORATIVA ================= -->
+    <div class="franja">
+      <div class="wrap-int">
+        <span class="eyebrow">Archivo</span>
+        <h2>Más columnas en nuestro archivo</h2>
+        <p>Explora ediciones anteriores y descubre todas las columnas publicadas hasta la fecha.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-marca">Punto de Vista</span>
+      <nav class="footer-links">
+        <a href="columna.html">Columna</a>
+        <a href="entrevista1.html">Entrevistas</a>
+        <a href="opinion.html">Artículo de opinión</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="video.html">Análisis de video</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">Punto de Vista — Trabajo académico · Inicio</div>
+  </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const opciones = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15
+      };
+
+      const encargadoDeAnimar = (entradas, observador) => {
+        entradas.forEach(entrada => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("active");
+            observador.unobserve(entrada.target);
+          }
+        });
+      };
+
+      const observador = new IntersectionObserver(encargadoDeAnimar, opciones);
+      document.querySelectorAll(".reveal").forEach(el => observador.observe(el));
+    });
+  </script>
+</body>
+</html>

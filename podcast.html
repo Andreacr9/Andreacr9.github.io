@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punto de Vista — Podcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#fafafa;
+    --crema-osc:#ececec;
+    --tinta:#1c1c1c;
+    --rojo:#6060e6;
+    --oro:#6060e6;
+    --linea: rgba(28,28,28,0.14);
+    --max: 1180px;
+  }
+
+  /* ---------- ANIMACIONES CON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .delay-1 { transition-delay: 0.15s; }
+  .delay-2 { transition-delay: 0.3s; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:700; margin:0;}
+  button{font-family:inherit;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAVBAR ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--crema);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 46px);
+    flex-wrap:wrap;
+  }
+  .nav-inner a{
+    font-family:'Jost', sans-serif;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--tinta);
+    padding:10px 2px;
+    position:relative;
+    white-space:nowrap;
+  }
+  .nav-inner a:hover{color:var(--rojo);}
+  .nav-inner a:focus-visible{outline:2px solid var(--oro); outline-offset:3px;}
+  .nav-inner a.active{color:var(--rojo); font-weight:500;}
+  .nav-inner a.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:2px;
+    height:2px; background:var(--oro);
+  }
+  .nav-logo{
+    display:flex; flex-direction:column; align-items:center;
+    line-height:1; margin:0 6px;
+  }
+  .nav-logo .marca{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.03em;
+    color:var(--tinta);
+  }
+  .nav-logo .pluma{
+    width:20px; height:2px; background:var(--oro); margin-top:6px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:42vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--crema);
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
+      repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
+    overflow:hidden;
+  }
+  .hero-inner{ padding:24px; max-width:760px; }
+  .hero-inner .eyebrow{
+    font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:18px; display:block;
+  }
+  .hero-inner h1{
+    font-size:clamp(2.8rem, 7vw, 5rem);
+    line-height:1.0;
+    color:#ffdb5a;
+    text-shadow:4px 4px 8px rgba(0,0,0,1);
+  }
+  .hero-inner p{
+    font-size:1.05rem;
+    color:rgba(250,250,250,0.82);
+    max-width:520px;
+    margin:18px auto 0;
+  }
+
+  /* ---------- ENCABEZADO DE SECCIÓN ---------- */
+  .section-head{
+    max-width:var(--max); margin:0 auto;
+    padding:60px 32px 10px;
+    text-align:center;
+  }
+  .section-head .eyebrow{
+    font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--rojo); display:block; margin-bottom:12px;
+  }
+  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.3rem); }
+  .section-head .filete{
+    width:56px; height:2px; background:var(--oro);
+    margin:20px auto 0;
+  }
+
+  /* ---------- REPRODUCTOR DE AUDIO ---------- */
+  .player-wrap{
+    max-width:760px; margin:40px auto 0;
+    padding:0 32px;
+  }
+  .player{
+    background:var(--tinta);
+    color:var(--crema);
+    border-radius:2px;
+    padding:34px 38px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .player-top{
+    display:flex; align-items:center; gap:20px;
+  }
+  .play-btn{
+    flex:none;
+    width:58px; height:58px;
+    border-radius:50%;
+    background:var(--oro);
+    border:none;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .play-btn:hover{ transform:scale(1.06); }
+  .play-btn:focus-visible{ outline:2px solid var(--crema); outline-offset:3px; }
+  .play-btn svg{ width:20px; height:20px; fill:var(--tinta); }
+  .play-btn .icon-pause{ display:none; }
+  .player.reproduciendo .icon-play{ display:none; }
+  .player.reproduciendo .icon-pause{ display:block; }
+
+  .player-info{ flex:1; min-width:0; }
+  .player-info .episodio{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:6px;
+  }
+  .player-info h3{
+    font-size:1.2rem; color:var(--crema);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+
+  .progreso-fila{
+    display:flex; align-items:center; gap:12px;
+  }
+  .tiempo{
+    font-size:11px; color:rgba(250,250,250,0.6);
+    font-variant-numeric:tabular-nums;
+    min-width:38px;
+  }
+  .tiempo.fin{ text-align:right; }
+  input[type="range"]{
+    -webkit-appearance:none; appearance:none;
+    width:100%; height:3px;
+    background:rgba(250,250,250,0.22);
+    border-radius:2px;
+    outline:none;
+    cursor:pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:13px; height:13px; border-radius:50%;
+    background:var(--oro);
+    cursor:pointer;
+    border:none;
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:13px; height:13px; border-radius:50%;
+    background:var(--oro); border:none; cursor:pointer;
+  }
+  #barra-progreso{ flex:1; }
+
+  .volumen-fila{
+    display:flex; align-items:center; gap:14px;
+    border-top:1px solid rgba(250,250,250,0.14);
+    padding-top:18px;
+  }
+  .icono-volumen{
+    flex:none; width:20px; height:20px;
+    display:flex; align-items:center; justify-content:center;
+    background:none; border:none; cursor:pointer;
+    color:rgba(250,250,250,0.75);
+  }
+  .icono-volumen svg{ width:18px; height:18px; fill:currentColor; }
+  #barra-volumen{ max-width:160px; }
+  .volumen-fila .etiqueta{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(250,250,250,0.55);
+  }
+
+  /* ---------- BLOQUE TEXTO + IMAGEN ---------- */
+  .bloque-podcast{
+    max-width:var(--max); margin:0 auto;
+    padding:70px 32px 30px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:34px;
+    align-items:center;
+  }
+  @media (min-width:820px){
+    .bloque-podcast{ grid-template-columns:1.15fr 1fr; }
+  }
+  .bloque-podcast .cuerpo .meta{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:12px;
+  }
+  .bloque-podcast .cuerpo .meta .autor{ color:rgba(28,28,28,0.55); margin-left:10px;}
+  .bloque-podcast h3{ font-size:2rem; line-height:1.15; margin-bottom:16px; }
+  .bloque-podcast p{ color:rgba(28,28,28,0.78); max-width:56ch; }
+  .bloque-podcast .fig{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.02), rgba(28,28,28,0.10)),
+      repeating-linear-gradient(45deg, #d8d8d8 0 2px, #e2e2e2 2px 28px);
+    border:1px solid var(--linea);
+  }
+  .bloque-podcast .fig span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:rgba(28,28,28,0.45);
+  }
+
+  /* ---------- FRANJA ---------- */
+  .franja{
+    background:var(--tinta);
+    color:var(--crema);
+    padding:56px 32px;
+    text-align:center;
+    margin-top:40px;
+  }
+  .franja .wrap-int{ max-width:640px; margin:0 auto; }
+  .franja .eyebrow{
+    font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--oro); display:block; margin-bottom:16px;
+  }
+  .franja h2{ color:var(--crema); font-size:clamp(1.5rem,3vw,2rem); margin-bottom:16px; }
+  .franja p{ color:rgba(250,250,250,0.78); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--crema-osc);
+    border-top:1px solid var(--linea);
+    padding:40px 32px 26px;
+  }
+  .footer-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:24px;
+    justify-content:space-between; align-items:flex-start;
+  }
+  .footer-marca{
+    font-family:'Playfair Display', serif; font-weight:700; font-size:20px;
+  }
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap:16px 22px;
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .footer-links a:hover{ color:var(--rojo); }
+  .footer-bottom{
+    max-width:var(--max); margin:26px auto 0;
+    padding-top:18px; border-top:1px solid var(--linea);
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:rgba(28,28,28,0.55);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar reveal">
+    <div class="nav-inner">
+      <a href="columna.html">Columna</a>
+      <a href="entrevista1.html">Entrevistas</a>
+      <a href="opinion.html">Artículo de opinión</a>
+      <div class="nav-logo">
+        <a href="index.html" aria-label="Ir al inicio">
+          <span class="marca">Punto de Vista</span>
+          <span class="pluma"></span>
+        </a>
+      </div>
+      <a href="podcast.html" class="active" aria-current="page">Podcast</a>
+      <a href="video.html">Análisis de video</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero reveal">
+    <div class="hero-inner">
+      <span class="eyebrow">Sección · Edición digital</span>
+      <h1>Podcast</h1>
+      <p>Escucha nuestras conversaciones semanales directamente desde la página.</p>
+    </div>
+  </header>
+
+  <main id="podcast">
+
+    <div class="section-head reveal">
+      <span class="eyebrow">Episodio de la semana</span>
+      <h2>Título del episodio</h2>
+      <div class="filete"></div>
+    </div>
+
+    <!-- ================= REPRODUCTOR DE AUDIO ================= -->
+    <div class="player-wrap reveal">
+      <div class="player" id="reproductor">
+
+        <div class="player-top">
+          <button class="play-btn" id="btn-play" aria-label="Reproducir">
+            <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <div class="player-info">
+            <div class="episodio">Episodio 01</div>
+            <h3>Nombre del episodio del podcast</h3>
+          </div>
+        </div>
+
+        <div class="progreso-fila">
+          <span class="tiempo" id="tiempo-actual">0:00</span>
+          <input type="range" id="barra-progreso" value="0" min="0" max="100" step="0.1" aria-label="Progreso del audio">
+          <span class="tiempo fin" id="tiempo-total">0:00</span>
+        </div>
+
+        <div class="volumen-fila">
+          <button class="icono-volumen" id="btn-mute" aria-label="Silenciar">
+            <svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3z"/></svg>
+          </button>
+          <span class="etiqueta">Volumen</span>
+          <input type="range" id="barra-volumen" value="80" min="0" max="100" step="1" aria-label="Control de volumen">
+        </div>
+
+        <audio id="audio" preload="metadata">
+          <!-- Reemplaza esta ruta por el archivo real del episodio -->
+          <source src="episodio-01.mp3" type="audio/mpeg">
+        </audio>
+
+      </div>
+    </div>
+
+    <!-- ================= BLOQUE TEXTO IZQUIERDA + IMAGEN DERECHA ================= -->
+    <article class="bloque-podcast reveal">
+      <div class="cuerpo">
+        <div class="meta">Sobre el episodio <span class="autor">— Conducido por la redacción</span></div>
+        <h3>De qué trata esta conversación</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis.</p>
+      </div>
+      <div class="fig"><span>Imagen del episodio<br>(sugerido 900×1100px)</span></div>
+    </article>
+
+    <!-- ================= FRANJA ================= -->
+    <div class="franja">
+      <div class="wrap-int">
+        <span class="eyebrow">Archivo</span>
+        <h2>Más episodios en nuestro archivo</h2>
+        <p>Explora ediciones anteriores del podcast y no te pierdas ningún episodio.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-marca">Punto de Vista</span>
+      <nav class="footer-links">
+        <a href="columna.html">Columna</a>
+        <a href="entrevista1.html">Entrevistas</a>
+        <a href="opinion.html">Artículo de opinión</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="#video">Análisis de video</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Podcast</div>
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ---------- Animaciones al hacer scroll ----------
+    const opciones = { root: null, rootMargin: "0px", threshold: 0.15 };
+    const encargadoDeAnimar = (entradas, observador) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("active");
+          observador.unobserve(entrada.target);
+        }
+      });
+    };
+    const observador = new IntersectionObserver(encargadoDeAnimar, opciones);
+    document.querySelectorAll(".reveal").forEach(el => observador.observe(el));
+
+    // ---------- Reproductor de audio ----------
+    const audio = document.getElementById("audio");
+    const player = document.getElementById("reproductor");
+    const btnPlay = document.getElementById("btn-play");
+    const barraProgreso = document.getElementById("barra-progreso");
+    const tiempoActual = document.getElementById("tiempo-actual");
+    const tiempoTotal = document.getElementById("tiempo-total");
+    const barraVolumen = document.getElementById("barra-volumen");
+    const btnMute = document.getElementById("btn-mute");
+
+    audio.volume = barraVolumen.value / 100;
+
+    function formatearTiempo(segundos){
+      if (!isFinite(segundos)) return "0:00";
+      const m = Math.floor(segundos / 60);
+      const s = Math.floor(segundos % 60).toString().padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    btnPlay.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener("play", () => {
+      player.classList.add("reproduciendo");
+      btnPlay.setAttribute("aria-label", "Pausar");
+    });
+    audio.addEventListener("pause", () => {
+      player.classList.remove("reproduciendo");
+      btnPlay.setAttribute("aria-label", "Reproducir");
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      tiempoTotal.textContent = formatearTiempo(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (audio.duration) {
+        barraProgreso.value = (audio.currentTime / audio.duration) * 100;
+      }
+      tiempoActual.textContent = formatearTiempo(audio.currentTime);
+    });
+
+    barraProgreso.addEventListener("input", () => {
+      if (audio.duration) {
+        audio.currentTime = (barraProgreso.value / 100) * audio.duration;
+      }
+    });
+
+    barraVolumen.addEventListener("input", () => {
+      audio.volume = barraVolumen.value / 100;
+      audio.muted = audio.volume === 0;
+    });
+
+    btnMute.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      if (audio.muted) {
+        barraVolumen.value = 0;
+      } else {
+        barraVolumen.value = audio.volume > 0 ? audio.volume * 100 : 80;
+        audio.volume = barraVolumen.value / 100;
+      }
+    });
+  });
+</script>
+</body>
+</html>

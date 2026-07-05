@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punto de Vista — Análisis de video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#fafafa;
+    --crema-osc:#ececec;
+    --tinta:#1c1c1c;
+    --rojo:#6060e6;
+    --oro:#6060e6;
+    --linea: rgba(28,28,28,0.14);
+    --max: 1180px;
+  }
+
+  /* ---------- ANIMACIONES CON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:700; margin:0;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAVBAR ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--crema);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 46px);
+    flex-wrap:wrap;
+  }
+  .nav-inner a{
+    font-family:'Jost', sans-serif;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--tinta);
+    padding:10px 2px;
+    position:relative;
+    white-space:nowrap;
+  }
+  .nav-inner a:hover{color:var(--rojo);}
+  .nav-inner a:focus-visible{outline:2px solid var(--oro); outline-offset:3px;}
+  .nav-inner a.active{color:var(--rojo); font-weight:500;}
+  .nav-inner a.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:2px;
+    height:2px; background:var(--oro);
+  }
+  .nav-logo{
+    display:flex; flex-direction:column; align-items:center;
+    line-height:1; margin:0 6px;
+  }
+  .nav-logo .marca{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.03em;
+    color:var(--tinta);
+  }
+  .nav-logo .pluma{
+    width:20px; height:2px; background:var(--oro); margin-top:6px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:42vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--crema);
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
+      repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
+    overflow:hidden;
+  }
+  .hero-inner{ padding:24px; max-width:760px; }
+  .hero-inner .eyebrow{
+    font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:18px; display:block;
+  }
+  .hero-inner h1{
+    font-size:clamp(2.6rem, 6.5vw, 4.6rem);
+    line-height:1.0;
+    color:#ffdb5a;
+    text-shadow:4px 4px 8px rgba(0,0,0,1);
+  }
+  .hero-inner p{
+    font-size:1.05rem;
+    color:rgba(250,250,250,0.82);
+    max-width:520px;
+    margin:18px auto 0;
+  }
+
+  /* ---------- ENCABEZADO DE SECCIÓN ---------- */
+  .section-head{
+    max-width:var(--max); margin:0 auto;
+    padding:60px 32px 10px;
+    text-align:center;
+  }
+  .section-head .eyebrow{
+    font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--rojo); display:block; margin-bottom:12px;
+  }
+  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.3rem); }
+  .section-head .filete{
+    width:56px; height:2px; background:var(--oro);
+    margin:20px auto 0;
+  }
+
+  /* ---------- REPRODUCTOR DE VIDEO ---------- */
+  .video-wrap{
+    max-width:900px; margin:40px auto 0;
+    padding:0 32px;
+  }
+  .video-marco{
+    background:var(--tinta);
+    padding:14px;
+    border-radius:2px;
+  }
+  .video-marco video{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+    display:block;
+  }
+  .video-info{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:16px 6px 4px;
+    flex-wrap:wrap;
+  }
+  .video-info .episodio{
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--oro);
+  }
+  .video-info h3{
+    font-size:1.15rem; color:var(--crema);
+  }
+  .video-nota{
+    font-size:11px; letter-spacing:.04em;
+    color:rgba(250,250,250,0.5);
+  }
+
+  /* ---------- PÁRRAFO ANCHO ---------- */
+  .parrafo-ancho{
+    max-width:var(--max); margin:0 auto;
+    padding:50px 32px 60px;
+  }
+  .parrafo-ancho p{
+    font-size:1.1rem;
+    line-height:1.85;
+    color:rgba(28,28,28,0.82);
+  }
+
+  /* ---------- FRANJA ---------- */
+  .franja{
+    background:var(--tinta);
+    color:var(--crema);
+    padding:56px 32px;
+    text-align:center;
+  }
+  .franja .wrap-int{ max-width:640px; margin:0 auto; }
+  .franja .eyebrow{
+    font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--oro); display:block; margin-bottom:16px;
+  }
+  .franja h2{ color:var(--crema); font-size:clamp(1.5rem,3vw,2rem); margin-bottom:16px; }
+  .franja p{ color:rgba(250,250,250,0.78); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--crema-osc);
+    border-top:1px solid var(--linea);
+    padding:40px 32px 26px;
+  }
+  .footer-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:24px;
+    justify-content:space-between; align-items:flex-start;
+  }
+  .footer-marca{
+    font-family:'Playfair Display', serif; font-weight:700; font-size:20px;
+  }
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap:16px 22px;
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .footer-links a:hover{ color:var(--rojo); }
+  .footer-bottom{
+    max-width:var(--max); margin:26px auto 0;
+    padding-top:18px; border-top:1px solid var(--linea);
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:rgba(28,28,28,0.55);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar reveal">
+    <div class="nav-inner">
+      <a href="columna.html">Columna</a>
+      <a href="entrevista1.html">Entrevistas</a>
+      <a href="opinion.html">Artículo de opinión</a>
+      <div class="nav-logo">
+        <a href="index.html" aria-label="Ir al inicio">
+          <span class="marca">Punto de Vista</span>
+          <span class="pluma"></span>
+        </a>
+      </div>
+      <a href="podcast.html">Podcast</a>
+      <a href="video.html" class="active" aria-current="page">Análisis de video</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero reveal">
+    <div class="hero-inner">
+      <span class="eyebrow">Sección · Edición digital</span>
+      <h1>Análisis de video</h1>
+      <p>Nuestros videos de análisis, disponibles directamente desde la página.</p>
+    </div>
+  </header>
+
+  <main id="video">
+
+    <div class="section-head reveal">
+      <span class="eyebrow">Video de la semana</span>
+      <h2>Título del análisis</h2>
+      <div class="filete"></div>
+    </div>
+
+    <!-- ================= REPRODUCTOR DE VIDEO ================= -->
+    <div class="video-wrap reveal">
+      <div class="video-marco">
+        <video controls preload="metadata">
+          <!-- Reemplaza esta ruta por el archivo de video que subas a la misma carpeta -->
+          <source src="balcones.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de este video.
+        </video>
+        <div class="video-info">
+          <div>
+            <div class="episodio">Análisis 01</div>
+            <h3>Los balcones de lima</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PÁRRAFO ANCHO ================= -->
+    <section class="parrafo-ancho reveal">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet purus in diam pretium malesuada. Vivamus efficitur mi at libero sollicitudin, in porta felis auctor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam tortor nunc, posuere quis dignissim nec, eleifend sit amet diam. Maecenas eget consequat massa. Pellentesque luctus erat et odio mattis, vitae commodo turpis mattis. In ut ultricies ligula. Pellentesque velit risus, laoreet in eros quis, volutpat accumsan mauris. Pellentesque varius elit at sapien lacinia, id dignissim metus finibus. Etiam nulla purus, iaculis eget enim sit amet, sagittis gravida lacus.</p>
+    </section>
+
+    <!-- ================= FRANJA ================= -->
+    <div class="franja">
+      <div class="wrap-int">
+        <span class="eyebrow">Archivo</span>
+        <h2>Más videos en nuestro archivo</h2>
+        <p>Explora ediciones anteriores de nuestros análisis en video.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-marca">Punto de Vista</span>
+      <nav class="footer-links">
+        <a href="columna.html">Columna</a>
+        <a href="entrevista1.html">Entrevistas</a>
+        <a href="opinion.html">Artículo de opinión</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="video.html">Análisis de video</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Análisis de video</div>
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const opciones = { root: null, rootMargin: "0px", threshold: 0.15 };
+    const encargadoDeAnimar = (entradas, observador) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("active");
+          observador.unobserve(entrada.target);
+        }
+      });
+    };
+    const observador = new IntersectionObserver(encargadoDeAnimar, opciones);
+    document.querySelectorAll(".reveal").forEach(el => observador.observe(el));
+  });
+</script>
+</body>
+</html>

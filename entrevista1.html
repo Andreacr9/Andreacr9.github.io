@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrevistas — Entrevista 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#fafafa;
+    --crema-osc:#ececec;
+    --tinta:#1c1c1c;
+    --rojo:#6060e6;
+    --oro:#6060e6;
+    --linea: rgba(28,28,28,0.14);
+    --max: 1180px;
+  }
+
+  /* ---------- ANIMACIONES CON SCROLL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .delay-1 { transition-delay: 0.15s; }
+  .delay-2 { transition-delay: 0.3s; }
+  .delay-3 { transition-delay: 0.45s; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--crema);
+    color:var(--tinta);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  h1,h2,h3{font-family:'Playfair Display', serif; font-weight:700; margin:0;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAVBAR ESTILO CENTRADO CON LOGO ---------- */
+  .navbar{
+    position:sticky; top:0; z-index:30;
+    background:var(--crema);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:14px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 46px);
+    flex-wrap:wrap;
+  }
+  .nav-inner a{
+    font-family:'Jost', sans-serif;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--tinta);
+    padding:10px 2px;
+    position:relative;
+    white-space:nowrap;
+  }
+  .nav-inner a:hover{color:var(--rojo);}
+  .nav-inner a:focus-visible{outline:2px solid var(--oro); outline-offset:3px;}
+  .nav-inner a.active{color:var(--rojo); font-weight:500;}
+  .nav-inner a.active::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:2px;
+    height:2px; background:var(--oro);
+  }
+  .nav-logo{
+    display:flex; flex-direction:column; align-items:center;
+    line-height:1; margin:0 6px;
+  }
+  .nav-logo .marca{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size:19px;
+    letter-spacing:.03em;
+    color:var(--tinta);
+  }
+  .nav-logo .pluma{
+    width:20px; height:2px; background:var(--oro); margin-top:6px;
+  }
+
+  /* ---------- SUB-NAV: SELECTOR DE ENTREVISTA ---------- */
+  .subnav{
+    background:var(--crema-osc);
+    border-bottom:1px solid var(--linea);
+  }
+  .subnav-inner{
+    max-width:var(--max); margin:0 auto;
+    padding:14px 32px;
+    display:flex; align-items:center; justify-content:center;
+    gap:10px;
+  }
+  .subnav-label{
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:rgba(28,28,28,0.5);
+    margin-right:8px;
+  }
+  .subnav a{
+    font-family:'Jost', sans-serif;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    padding:8px 18px;
+    border:1px solid var(--linea);
+    color:rgba(28,28,28,0.65);
+    background:var(--crema);
+    transition:all .25s ease;
+  }
+  .subnav a:hover{ color:var(--rojo); border-color:var(--rojo); }
+  .subnav a.tab-active{
+    background:var(--tinta); color:var(--crema); border-color:var(--tinta);
+  }
+
+  /* ---------- HERO / TÍTULO GRANDE ---------- */
+  .hero{
+    position:relative;
+    min-height:46vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--crema);
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.35) 0%, rgba(28,28,28,0.78) 100%),
+      repeating-linear-gradient(120deg, #3a3a3a 0 3px, #2a2a2a 3px 46px);
+    overflow:hidden;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.459), rgba(218, 218, 218, 0)), url(hhhhh.jpg);
+  }
+  .hero-inner{ padding:24px; max-width:760px; }
+  .hero-inner .eyebrow{
+    font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:18px; display:block;
+  }
+  .hero-inner h1{
+    font-size:clamp(2.2rem, 6vw, 3.4rem);
+    line-height:1.0;
+    letter-spacing:.01em;
+    color:#ffdb5a;
+    text-shadow:4px 4px 8px rgba(0,0,0,1);
+  }
+
+  /* ---------- ENCABEZADO DE SECCIÓN ---------- */
+  .section-head{
+    max-width:var(--max); margin:0 auto;
+    padding:60px 32px 10px;
+    text-align:center;
+  }
+  .section-head .eyebrow{
+    font-size:16px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--rojo); display:block; margin-bottom:12px;
+  }
+
+  .bloque-entrevista .eyebrow{
+
+    font-size:16px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--rojo); display:block; margin-bottom:12px;
+  
+  }
+  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.3rem); }
+  .section-head .filete{
+    width:56px; height:2px; background:var(--oro);
+    margin:20px auto 0;
+  }
+
+
+  /* ---------- BLOQUE ENTREVISTA: IMAGEN + TEXTO ---------- */
+  .bloque-entrevista{
+    max-width:var(--max); margin:0 auto;
+    padding:40px 32px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:34px;
+    align-items:start;
+  }
+    
+  .bloque-entrevista .cuerpo{
+    align-items:top;
+  }
+  @media (min-width:820px){
+    .bloque-entrevista{ grid-template-columns:1fr 1.15fr; }
+  }
+  .bloque-entrevista .fig{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.02), rgba(28,28,28,0.10)),
+      repeating-linear-gradient(45deg, #d8d8d8 0 2px, #e2e2e2 2px 28px);
+    border:1px solid var(--linea);
+  }
+  .bloque-entrevista .fig span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:rgba(28,28,28,0.45);
+  }
+
+  .bloque-entrevista .meta{
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--oro); margin-bottom:12px;
+  }
+  .bloque-entrevista .meta .autor{ color:rgba(28,28,28,0.55); margin-left:10px;}
+  .bloque-entrevista h3{ font-size:2.1rem; line-height:1.15; margin-bottom:16px; }
+  .bloque-entrevista p{ color:rgba(28,28,28,0.78); max-width:56ch; }
+
+  /* ---------- PARRAFO ANCHO (TODO EL LARGO) ---------- */
+  .parrafo-ancho{
+    max-width:var(--max); margin:0 auto;
+    padding:20px 32px 50px;
+  }
+  .parrafo-ancho p{
+    font-size:1 rem;
+    line-height:1.85;
+    color:rgba(28,28,28,0.82);
+    max-width:none;
+  }
+
+  .parrafo-ancho h3{
+    color: #6060e6
+  }
+
+  /* ---------- IMAGEN LARGA A PANTALLA COMPLETA ---------- */
+  .imagen-larga{
+    position:relative;
+    width:100%;
+    aspect-ratio:21/8;
+    background:
+      linear-gradient(180deg, rgba(28,28,28,0.05), rgba(28,28,28,0.18)),
+      repeating-linear-gradient(135deg, #4a4a5e 0 2px, #5a5a72 2px 30px);
+    border-top:1px solid var(--linea);
+    border-bottom:1px solid var(--linea);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .imagen-larga span{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(250,250,250,0.75);
+  }
+
+  /* ---------- FRANJA DECORATIVA ---------- */
+  .franja{
+    background:var(--tinta);
+    color:var(--crema);
+    padding:56px 32px;
+    text-align:center;
+  }
+  .franja .wrap-int{ max-width:640px; margin:0 auto; }
+  .franja .eyebrow{
+    font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+    color:var(--oro); display:block; margin-bottom:16px;
+  }
+  .franja h2{ color:var(--crema); font-size:clamp(1.5rem,3vw,2rem); margin-bottom:16px; }
+  .franja p{ color:rgba(250,250,250,0.78); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--crema-osc);
+    border-top:1px solid var(--linea);
+    padding:40px 32px 26px;
+  }
+  .footer-inner{
+    max-width:var(--max); margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:24px;
+    justify-content:space-between; align-items:flex-start;
+  }
+  .footer-marca{
+    font-family:'Playfair Display', serif; font-weight:700; font-size:20px;
+  }
+  .footer-links{
+    display:flex; flex-wrap:wrap; gap:16px 22px;
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .footer-links a:hover{ color:var(--rojo); }
+  .footer-bottom{
+    max-width:var(--max); margin:26px auto 0;
+    padding-top:18px; border-top:1px solid var(--linea);
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:rgba(28,28,28,0.55);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR CENTRADO CON LOGO ================= -->
+  <nav class="navbar reveal">
+    <div class="nav-inner">
+      <a href="columna.html">Columna</a>
+      <a href="entrevista1.html" class="active" aria-current="page">Entrevistas</a>
+      <a href="opinion.html">Artículo de opinión</a>
+      <div class="nav-logo">
+        <a href="index.html" aria-label="Ir al inicio">
+          <span class="marca">Punto de Vista</span>
+          <span class="pluma"></span>
+        </a>
+      </div>
+      <a href="podcast.html">Podcast</a>
+      <a href="video.html">Análisis de video</a>
+    </div>
+  </nav>
+
+  <!-- ================= SUB-NAV: SELECTOR DE ENTREVISTA ================= -->
+  <div class="subnav">
+    <div class="subnav-inner">
+      <span class="subnav-label">Ver entrevista:</span>
+      <a href="entrevista1.html" class="tab-active">Entrevista 1</a>
+      <a href="entrevista2.html">Entrevista 2</a>
+    </div>
+  </div>
+
+  <!-- ================= HERO / TÍTULO GRANDE <i>¿Cómo resguardar un patrimonio en peligro?</i>================= -->
+  <header class="hero reveal">
+    <div class="hero-inner">
+      <h1>¿Cómo resguardar un patrimonio en peligro?</h1>
+    </div>
+  </header>
+
+  <main id="entrevistas">
+
+    <div class="section-head reveal">
+      <span class="eyebrow">El Centro Histórico de Lima entre la fachada y el olvido.</span>
+      <p><i>Caminar por el Centro Histórico de Lima es un ejercicio de constantes contrastes. En una misma 
+manzana es posible encontrar el destello de un local comercial de lujo resguardado por seguridad 
+privada y, a solo unos metros, la penumbra de calles descuidadas que delatan un evidente abandono 
+social y estatal. Para entender la compleja realidad urbana, legal y humana detrás de estos 
+monumentos, conversamos con la arquitecta Silvia de los Ríos, destacada especialista en 
+conservación urbana y gestión del patrimonio, quien desmenuza los desafíos técnicos y sociales de 
+revivir el corazón de la ciudad.</i></p>
+    <p class="eyebrow">Entrevista a Silvia De Los ríos</p>
+    </div>
+      <div class="filete"></div>
+    </div>
+
+    <!-- ================= BLOQUE 1: IMAGEN IZQUIERDA + TÍTULO/TEXTO DERECHA ================= -->
+    <article class="bloque-entrevista reveal">
+      <img src="arquitectasilvia.jpeg" alt="Fotografía de la arquitecta silvia. Señora de unos">
+      <div class="cuerpo">
+        <p><b>Por: Andrea Cauracuri Rengifo</b></p>
+        <p>La recuperación del patrimonio histórico suele confundirse erróneamente con la simple pintura de 
+          fachadas o el reforzamiento de muros viejos. Sin embargo, los expertos advierten que la verdadera 
+          intervención va mucho más allá de la ingeniería material: implica devolverle una función útil y 
+          sostenible al inmueble dentro de la dinámica urbana actual, un proceso conocido técnicamente como 
+          revitalización. </p>
+          <p><i><b>¿Qué desafíos implica restaurar una casona en el centro de Lima?</b></i></p>
+          <p>Restaurar una casona antigua en Lima es un proceso complejo que trasciende varias etapas. No se trata 
+            solo de un trabajo de ingeniería; implica abordar cuestiones técnicas como las estructurales, pero 
+            también financieras, legales y, de manera muy crucial, sociales. Son desafíos para lo que viene a ser la 
+            restauración de una casona. Aquí quiero hacer una precisión técnica importante: la restauración es una 
+            acción dentro de un proceso mayor que llamamos revitalización de inmuebles. No debemos confundir 
+            restaurar con lo que viene a ser la conservación en general; son términos técnicos y diferentes, y la 
+            restauración busca devolverles la vida a los inmuebles.</p>
+      </div>
+    </article>
+
+    <!-- ================= PÁRRAFO ANCHO ================= -->
+    <section class="parrafo-ancho reveal">
+        <p><i><b>¿Desde su experiencia considera que este tema ayuda a preservar la identidad del lugar o más 
+                bien lo está transformando? </b></i></p>
+        <p class="cuerpo">Debe existir un equilibrio. Las diferentes etapas de la conservación del patrimonio, como la 
+          restauración, deben tener un equilibrio entre lo que viene a ser la intervención física, para dar 
+          rentabilidad, atraer turismo, etcétera, y lo que viene a ser la preservación o el cuidado de la identidad. 
+          La restauración, como un componente de darle vida y revitalizar el patrimonio cultural edificado, debe 
+          garantizar no tan solo lo físico, sino también lo histórico y lo social. Si no es así, se va a perder el valor 
+          histórico y los elementos que han dado origen a que esa edificación sea patrimonio cultural. </p>
+
+        <p><i><b>¿Cómo se maneja el tema social? A veces mucha gente tiende a hacer problemas. ¿Tienen una 
+                manera de afrontarlo?  </b></i></p>
+        <p class="cuerpo">Conceptualmente, el tema social no debe estar aislado, porque creo que la ciudad y su patrimonio 
+          histórico son componentes para que tengamos ciudades y barrios sostenibles. Eso quiere decir que esta 
+          intervención o conservación de estos barrios antiguos son para la gente, para la población; la ciudad se 
+          hace para la gente y la gente hace diferentes acciones para vivir en ella. No es tan solo un escenario 
+          escenográfico para atraer turistas o para la mercantilización de la ciudad o de las economías. Lo social 
+          está vinculado, para muchos, en lo que viene a ser proteger la residencialidad y la habitabilidad de estos 
+          barrios históricos. Sin ellos, no hay vida; tendríamos solamente una escenografía muy bonita y colorida 
+          para determinadas acciones, pero el resto se pierde. Cuando el comercio desplaza al habitante 
+          tradicional, la vida que le da seguridad y habitabilidad, ese candor y calidez, se pierde. Lo social debe 
+          ser el principal componente. </p>
+
+          <h3><b>Marcos legales, gentrificación y abandono urbano</b></h3>
+
+          <p><i><b>¿Qué criterios se utilizan para decidir qué elementos conservar y cuáles intervenir?  
+          </b></i></p>
+          <p class="cuerpo">Principalmente, hay una normativa y, por suerte, tenemos una Ley General del Patrimonio Cultural de 
+                  la Nación, la 28296, que tiene su reglamento donde están establecidos los criterios de conservación. 
+                  Diríamos que no son perfectos, pero ya hay un marco normativo para lo que viene a ser la conservación, 
+                  dentro de la cual está la restauración y las diferentes acciones. Eso se tiene que respetar porque nos guía 
+                  luego de haber sido hecha bajo determinados estudios para verdaderamente conservar para bien del 
+                  espacio patrimonial. Ahí se consideran los usos, el papel del propietario, la autenticidad, la integridad 
+                  y la adecuación a la protección, porque el Ministerio de Cultura tiene directivas para saber qué áreas se 
+                  conservan, qué áreas se restauran y qué áreas pueden liberarse para obra nueva. Tenemos ese marco, 
+                  aunque está un poco golpeado con las últimas reformas porque para muchos inversionistas y 
+                  legisladores, conservar un patrimonio con determinados criterios limitantes es espantar la inversión, y 
+                  no es así. </p>
+
+          <p><i><b>¿Y cómo hacen con las inversiones? ¿Contribuyen, aunque sea indirectamente, al desplazamiento 
+                    de los residentes tradicionales?</b></i></p>
+          <p class="cuerpo">Es un tema bastante significativo. Va a suceder eso si es que la inversión no considera estos criterios ni 
+            los lineamientos del plan de manejo del centro histórico, donde teóricamente se habla de que el centro 
+            sea un centro vivo. A veces, por la capitalización de la inversión inmediata y no a mediano plazo bajo 
+            un proceso progresivo, prefieren tirar abajo las casonas y quedarse solo con la fachada, y adentro hacerlo 
+            de material más barato y económico sin intervenir como debe ser. Eso está sucediendo en varios barrios 
+            altos; están tirando abajo edificaciones completas y el municipio está ahí un poco de testigo en silencio. 
+            Con esas acciones sí están desplazando y quieren traer nueva población que económicamente sea un 
+            mejor consumidor, pero eso no debe ser. En Europa la política es diferente; el municipio interviene 
+            creando sistemas para la vivienda de interés social e involucrando a las personas de pocos recursos en 
+            edificaciones bien restauradas en el área central. Aquí se copió algo parecido con las viviendas de interés 
+            social, pero ninguno se ha hecho en el centro histórico, sino en otros distritos, liberalizando las políticas 
+            y quitándole poder al gobierno para regular en favor de todos.</p>
+
+          <p><i><b>¿Qué opina de que existan locales comerciales muy lujosos y resguardados, pero a solo unos 
+                  metros las calles luzcan oscuras, descuidadas y desatendidas?</b></i></p>
+          <p>Exactamente, se prioriza el negocio focalizado, pero se abandona el entorno. Las marcas de prestigio e 
+            inversiones importantes tienen el presupuesto, pero muchas no se instalan en el centro porque falta una 
+            gestión urbana que resuelva lo básico: la iluminación, la seguridad integral, la prevención de sismos e 
+            incendios, y un transporte público ordenado. La avenida Abancay, por ejemplo, sigue siendo un caos. 
+            Peatonalizar unas cuantas calles y pintar fachadas es insuficiente si no se soluciona la accesibilidad y la 
+            habitabilidad.</p>
+
+
+          <h3><b>Ética profesional y la visión de un centro vivo</b></h3>
+          <p><i><b>Desde el punto de vista del diseño, ¿cuál es la responsabilidad ética que tienen los arquitectos al 
+                  intervenir estos espacios históricos?</b></i></p>
+          <p>Nuestra responsabilidad ética es enorme. El arquitecto no puede diseñar solo para satisfacer su propio 
+                  ego o para figurar como una "súper estrella". El éxito de un proyecto patrimonial se mide en cómo 
+                  impacta positivamente en su barrio y en la ciudad. Ser ético significa respetar el valor histórico y social 
+                  de la estructura, dialogar con la comunidad y plantear soluciones que mejoren la calidad de vida real 
+                  del usuario como espacios con luz, ventilación, áreas comunes dignas, y no limitarse a cumplir un 
+                  reglamento de manera fría para cobrar honorarios. Debe ser un diseño articulado de manera participativa 
+                  con la población. </p>
+
+          <p><i><b>¿Cómo se imagina el futuro del Centro Histórico de Lima, cuál sería su sueño?</b></i></p>
+          <p>Mi sueño, que comparto con muchos colegas, es que Lima sea verdaderamente un centro vivo; un 
+            laboratorio de ciudad viva. Quisiera ver un espacio donde se sigan haciendo prácticas y proyectos, pero 
+            sin olvidar a la gente y a los habitantes, que son los principales protagonistas que van a cuidar el 
+            patrimonio si tienen un lugar habitable y con servicios. Deseo un Centro Histórico donde la historia no 
+            esté congelada en un museo del pasado, sino integrada a la vida diaria; donde las casonas alberguen 
+            dinámicas mixtas de comercio sostenible y vivienda digna. Ese es el patrimonio por el que vale la pena 
+            trabajar.</p>
+
+            <h3><b>El desafío de la memoria viva</b></h3>
+            <p>La conversación con la arquitecta Silvia de los Ríos deja una certeza: el patrimonio material de Lima 
+              no puede salvarse si se condena al olvido a su patrimonio humano. Las políticas actuales, enfocadas 
+              recurrentemente en el "fachadismo" estético y en la rentabilidad comercial inmediata, están 
+              canibalizando los barrios históricos y provocando una gentrificación silenciosa que vacía la ciudad de 
+              sus legítimos habitantes.</p>
+            <p>Recuperar el Centro Histórico de Lima no implica congelar el pasado ni expulsar la inversión, sino 
+              regularla con firmeza técnica y sensibilidad social. La verdadera revitalización urbana exige resolver 
+              las carencias estructurales del entorno, como la seguridad, el transporte y la iluminación y promover 
+              proyectos de vivienda inclusivos que devuelvan la residencialidad a las casonas. Solo cuando 
+              entendamos que la historia debe estar integrada a la vida diaria de los ciudadanos, y que el vecino 
+              tradicional es el guardián principal de esa memoria, Lima podrá aspirar a ser un "centro vivo" y 
+              sostenible, y no un mero escenario escenográfico propenso al deterioro.</p>
+
+
+    </section>
+    <!-- ================= IMAGEN LARGA FINAL ================= -->
+
+    <!-- ================= FRANJA DECORATIVA ================= -->
+    <div class="franja">
+      <div class="wrap-int">
+        <h2>Descubre nuestra segunda entrevista</h2>
+        <p>Cambia de página desde el menú superior para leer la Entrevista 2.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-marca">Punto de Vista</span>
+      <nav class="footer-links">
+        <a href="columna.html">Columna</a>
+        <a href="entrevista1.html">Entrevistas</a>
+        <a href="opinion.html">Artículo de opinión</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="video.html">Análisis de video</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">Punto de Vista — Trabajo académico · Sección Entrevistas</div>
+  </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const opciones = { root: null, rootMargin: "0px", threshold: 0.15 };
+    const encargadoDeAnimar = (entradas, observador) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("active");
+          observador.unobserve(entrada.target);
+        }
+      });
+    };
+    const observador = new IntersectionObserver(encargadoDeAnimar, opciones);
+    document.querySelectorAll(".reveal").forEach(el => observador.observe(el));
+  });
+</script>
+</body>
+</html>
