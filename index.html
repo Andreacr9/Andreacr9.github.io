@@ -121,10 +121,19 @@
   }
 
   .hero-inner{
-width: 100%;
-  display: flex;
-  justify-content: center;
-   }
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .hero-inner img{
+    width: 669px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 669 / 373;
+    margin: 0 auto;
+  }
   .hero-inner .eyebrow{
     font-size:12.5px; letter-spacing:.28em; text-transform:uppercase;
     color:var(--oro); margin-bottom:18px; display:block;
@@ -293,6 +302,37 @@ width: 100%;
   .franja h2{ color:var(--crema); font-size:clamp(1.7rem,3.4vw,2.3rem); margin-bottom:16px; }
   .franja p{ color:rgba(250,250,250,0.78); }
 
+    .franja .redes{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px 40px;
+    margin-top:28px;
+  }
+  .franja .red{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    color:var(--crema);
+    font-size:14px;
+    letter-spacing:.1em;
+    transition:color .25s ease, transform .25s ease;
+  }
+  .franja .red img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+  }
+  .franja .red:hover{
+    color:var(--oro);
+    transform:translateY(-2px);
+  }
+  .franja .red:focus-visible{
+    outline:2px solid var(--oro);
+    outline-offset:4px;
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     background:var(--crema-osc);
@@ -342,14 +382,14 @@ width: 100%;
         </a>
       </div>
       <a href="podcast.html">Podcast</a>
-      <a href="video.html">Análisis de video</a>
+      <a href="video.html">Videos</a>
     </div>
   </nav>
 
   <!-- ================= CABECERA / HERO CON IMAGEN ================= -->
   <header class="hero">
     <div class="hero-inner">
-      <h1>Déjame que te cuente limeño...</h1>
+      <img src="logo_header.png" alt="Déjame que te cuente limeño" width="669" height="373">
     </div>
   </header>
 
@@ -358,7 +398,7 @@ width: 100%;
     <!-- ================= ENCABEZADO DE SECCIÓN ================= -->
     <div class="section-head reveal">
       <span class="eyebrow">Destacado</span>
-      <h2>¿Qué es la gentrificación?</h2>
+      <h2>¿Quiénes somos?</h2>
       <div class="filete"></div>
       <p>Textos de opinión firmados, publicados semanalmente. Cada entrada combina una imagen de apoyo con el desarrollo del texto.</p>
     </div>
@@ -367,13 +407,13 @@ width: 100%;
     <article class="destacado">
       <div class="fig"><span><br></span></div>
       <div class="cuerpo">
-        <p class="extracto">La gentrificación es un proceso de transformación urbana en el que un barrio de bajos ingresos o en estado de abandono experimenta una renovación arquitectónica, comercial e inmobiliaria. Al mejorar el entorno, la zona atrae a comercios de mayor estatus y a residentes con un poder adquisitivo más alto, lo que dispara drásticamente el valor del suelo, los alquileres y los servicios básicos. La consecuencia más dura de este fenómeno es el desplazamiento forzoso de los habitantes originales y de los pequeños negocios tradicionales, quienes se ven obligados a mudarse al no poder costear el nuevo nivel de vida.</p>
+        <p class="extracto">Déjame que te cuente es un proyecto de periodismo transmedia dedicado a documentar la transformación urbana, patrimonial y económica del Centro Histórico de Lima. Unimos la memoria histórica con las nuevas oportunidades que trae la recuperación de la ciudad, ofreciendo crónicas, mapas y formatos multimedia pensados para redescubrir y reconectar con el patrimonio vivo de la capital.</p>
       </div>
     </article>
 
     <article class="paragrafo-destacado">
-      <p>Proteger al Centro Histórico de Lima de una gentrificación desmedida es urgente porque este espacio, declarado Patrimonio de la Humanidad por la UNESCO, es un tejido vivo que va mucho más allá de sus iglesias y balcones coloniales. Su verdadero valor reside en su patrimonio inmaterial y en la memoria colectiva de los vecinos que habitan sus quintas, solares y callejones. Si el proceso de renovación urbana se enfoca únicamente en el mercado inmobiliario de lujo o en franquicias comerciales, el centro corre el riesgo de sufrir una "turistificación", transformándose en una maqueta fría y en un parque temático turístico vacío de su identidad y de su alma original.</p>
-      <p>Además, existe un factor de profunda injusticia social en el desplazamiento de las comunidades vulnerables que han resistido en el centro por generaciones, muchas veces en condiciones habitacionales precarias. El verdadero desafío para Lima no es congelar el centro en el tiempo ni oponerse a su modernización, sino impulsar una revitalización inclusiva que recupere la belleza arquitectónica y mejore los servicios básicos, pero garantizando siempre el derecho a la vivienda y la permanencia de su gente.</p>
+      <h2>Nuestro objetivo</h2>
+    <p>Nuestro objetivo es transformar la mirada sobre el Centro Histórico de Lima: dejar de verlo como un recuerdo lejano o un espacio congestionado, y posicionarlo como un polo vivo de cultura, reactivación económica y futuro urbano, donde conocer la historia sea el primer paso para cuidar la ciudad que viene.</p>  
     </article>
 
     <!-- ================= GRILLA DE SECCIONES DEL SITIO ================= -->
@@ -429,7 +469,17 @@ width: 100%;
     <!-- ================= FRANJA DECORATIVA ================= -->
     <div class="franja">
       <div class="wrap-int">
-        <h2>Descubre más en nuestra página web</h2>
+        <h2>Descubre más en nuestras redes sociales</h2>
+        <div class="redes">
+  <a href="https://www.instagram.com/dejamequetecuente.lima" class="red" target="_blank" rel="noopener" aria-label="Instagram">
+    <img src="instagram.png" alt="Instagram" width="28" height="28">
+    <span>dejamequetecuente.lima</span>
+  </a>
+  <a href="https://www.tiktok.com/@dejamequetecuente.lima" class="red" target="_blank" rel="noopener" aria-label="TikTok">
+    <img src="tik-tok.png" alt="TikTok" width="28" height="28">
+    <span>dejamequetecuente.lima</span>
+  </a>
+</div>
       </div>
     </div>
 
@@ -444,7 +494,7 @@ width: 100%;
         <a href="entrevista1.html">Entrevistas</a>
         <a href="opinion.html">Artículo de opinión</a>
         <a href="podcast.html">Podcast</a>
-        <a href="video.html">Análisis de video</a>
+        <a href="video.html">Videos</a>
       </nav>
     </div>
     <div class="footer-bottom">Déjame que te cuente limeño — Trabajo académico · Inicio</div>
